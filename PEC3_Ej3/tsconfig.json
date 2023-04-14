@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    //Indica la versión de ES en la que se compilará el código a JS
+    "target": "es2015", 
+    //Indica como se va a empaquetar el código TypeScript en JS
+    "module": "commonjs", 
+    //Especifica el directorio donde se va a publicar el código JS compilado
+    "outDir": "./dist",   
+     //Especifica la ubicación de la carpeta de origen del código TypeScript
+    "rootDir": "./src", 
+    //Habilita un conjunto de opciones estrictas de TypeScript que mejoran la calidad del código y ayudan a detectar errores en tiempo de compilación
+    "strict": true,
+    //Habilita la compilación incremental
+    "incremental": true,
+    //Especifica la ubicación donde se guardará un archivo de caché de compilación
+    "tsBuildInfoFile": "./buildcache",
+  }
+}
