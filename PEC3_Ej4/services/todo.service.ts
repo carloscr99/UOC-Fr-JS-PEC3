@@ -2,10 +2,15 @@
  * @class Service
  *
  * Manages the data of the application.
- */
-class TodoService {
-  constructor() {
-    this.todos = (JSON.parse(localStorage.getItem("todos")) || []).map(
+*/
+
+import Todo from "../models/todo.model";
+import TodoController from "../controllers/todo.controller";
+
+ class TodoService {
+  todos: Todo[];
+  constructor(todos = []) {
+    this.todos = (JSON.parse(localStorage.getItem("todos") as string) || todos).map(
       todo => new Todo(todo)
     );
   }
@@ -52,3 +57,4 @@ class TodoService {
     this._commit(this.todos);
   }
 }
+export default TodoService;

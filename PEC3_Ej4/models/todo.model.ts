@@ -5,7 +5,17 @@
  */
 import { v4 as uuidv4 } from 'uuid';
 
-abstract class Todo {
+ interface ITodo {
+  id: string;
+  text: string;
+  complete: boolean;
+
+
+}
+
+
+class Todo implements ITodo {
+  
   id: string;
   text: string;
   complete: boolean;
@@ -21,3 +31,5 @@ abstract class Todo {
   }
   
 }
+
+export default Todo;

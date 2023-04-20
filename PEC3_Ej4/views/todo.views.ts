@@ -4,6 +4,16 @@
  * Visual representation of the model.
  */
 class TodoView {
+
+   app: any;
+   form: any;
+   input: any;
+   submitButton: any;
+   title: any;
+   todoList: any;
+   _temporaryTodoText: any;
+
+
   constructor() {
     this.app = this.getElement("#root");
     this.form = this.createElement("form");
@@ -31,7 +41,7 @@ class TodoView {
     this.input.value = "";
   }
 
-  createElement(tag, className) {
+  createElement(tag, className?) {
     const element = document.createElement(tag);
 
     if (className) element.classList.add(className);

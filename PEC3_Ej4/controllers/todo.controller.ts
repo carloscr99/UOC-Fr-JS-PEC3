@@ -42,3 +42,4 @@ class TodoController {
     this.service.toggleTodo(id);
   };
 }
+export default TodoController;
