@@ -7,6 +7,8 @@
  * @param view
  */
 class TodoController {
+  service: any;
+  view: any;
   constructor(service, view) {
     this.service = service;
     this.view = view;

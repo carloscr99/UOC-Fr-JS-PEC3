@@ -9,6 +9,7 @@ import TodoController from "../controllers/todo.controller";
 
  class TodoService {
   todos: Todo[];
+   onTodoListChanged: any;
   constructor(todos = []) {
     this.todos = (JSON.parse(localStorage.getItem("todos") as string) || todos).map(
       todo => new Todo(todo)
