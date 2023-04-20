@@ -1,3 +1,5 @@
+import TodoService from "../services/todo.service";
+
 /**
  * @class Controller
  *
@@ -9,7 +11,7 @@
 class TodoController {
   service: any;
   view: any;
-  constructor(service, view) {
+  constructor(service: TodoService, view: TodoView) {
     this.service = service;
     this.view = view;
 
@@ -24,23 +26,23 @@ class TodoController {
     this.onTodoListChanged(this.service.todos);
   }
 
-  onTodoListChanged = todos => {
+  onTodoListChanged = (todos: any) => {
     this.view.displayTodos(todos);
   };
 
-  handleAddTodo = todoText => {
+  handleAddTodo = (todoText: any) => {
     this.service.addTodo(todoText);
   };
 
-  handleEditTodo = (id, todoText) => {
+  handleEditTodo = (id: any, todoText: any) => {
     this.service.editTodo(id, todoText);
   };
 
-  handleDeleteTodo = id => {
+  handleDeleteTodo = (id: any) => {
     this.service.deleteTodo(id);
   };
 
-  handleToggleTodo = id => {
+  handleToggleTodo = (id: any) => {
     this.service.toggleTodo(id);
   };
 }

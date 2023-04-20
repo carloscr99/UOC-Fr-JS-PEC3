@@ -41,7 +41,7 @@ class TodoView {
     this.input.value = "";
   }
 
-  createElement(tag, className?) {
+  createElement(tag: string, className?: string | undefined) {
     const element = document.createElement(tag);
 
     if (className) element.classList.add(className);
@@ -49,13 +49,13 @@ class TodoView {
     return element;
   }
 
-  getElement(selector) {
+  getElement(selector: string) {
     const element = document.querySelector(selector);
 
     return element;
   }
 
-  displayTodos(todos) {
+  displayTodos(todos: any[]) {
     // Delete all nodes
     while (this.todoList.firstChild) {
       this.todoList.removeChild(this.todoList.firstChild);
@@ -68,15 +68,15 @@ class TodoView {
       this.todoList.append(p);
     } else {
       // Create nodes
-      todos.forEach(todo => {
+      todos.forEach((todo: { id: any; complete: any; text: any; }) => {
         const li = this.createElement("li");
         li.id = todo.id;
 
-        const checkbox = this.createElement("input");
+        const checkbox = this.createElement("input") as any;
         checkbox.type = "checkbox";
         checkbox.checked = todo.complete;
 
-        const span = this.createElement("span");
+        const span = this.createElement("span") as any;
         span.contentEditable = true;
         span.classList.add("editable");
 
@@ -102,15 +102,15 @@ class TodoView {
   }
 
   _initLocalListeners() {
-    this.todoList.addEventListener("input", event => {
+    this.todoList.addEventListener("input", (event: { target: { className: string; innerText: any; }; }) => {
       if (event.target.className === "editable") {
         this._temporaryTodoText = event.target.innerText;
       }
     });
   }
 
-  bindAddTodo(handler) {
-    this.form.addEventListener("submit", event => {
+  bindAddTodo(handler: (arg0: any) => void) {
+    this.form.addEventListener("submit", (event: { preventDefault: () => void; }) => {
       event.preventDefault();
 
       if (this._todoText) {
@@ -120,8 +120,8 @@ class TodoView {
     });
   }
 
-  bindDeleteTodo(handler) {
-    this.todoList.addEventListener("click", event => {
+  bindDeleteTodo(handler: (arg0: any) => void) {
+    this.todoList.addEventListener("click", (event: { target: { className: string; parentElement: { id: any; }; }; }) => {
       if (event.target.className === "delete") {
         const id = event.target.parentElement.id;
 
@@ -130,8 +130,8 @@ class TodoView {
     });
   }
 
-  bindEditTodo(handler) {
-    this.todoList.addEventListener("focusout", event => {
+  bindEditTodo(handler: (arg0: any, arg1: any) => void) {
+    this.todoList.addEventListener("focusout", (event: { target: { parentElement: { id: any; }; }; }) => {
       if (this._temporaryTodoText) {
         const id = event.target.parentElement.id;
 
@@ -141,8 +141,8 @@ class TodoView {
     });
   }
 
-  bindToggleTodo(handler) {
-    this.todoList.addEventListener("change", event => {
+  bindToggleTodo(handler: (arg0: any) => void) {
+    this.todoList.addEventListener("change", (event: { target: { type: string; parentElement: { id: any; }; }; }) => {
       if (event.target.type === "checkbox") {
         const id = event.target.parentElement.id;
 

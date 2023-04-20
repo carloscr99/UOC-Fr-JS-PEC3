@@ -12,26 +12,26 @@ import TodoController from "../controllers/todo.controller";
    onTodoListChanged: any;
   constructor(todos = []) {
     this.todos = (JSON.parse(localStorage.getItem("todos") as string) || todos).map(
-      todo => new Todo(todo)
+      (      todo: { text?: string | undefined; complete?: boolean | undefined; }) => new Todo(todo)
     );
   }
 
-  bindTodoListChanged(callback) {
+  bindTodoListChanged(callback: any) {
     this.onTodoListChanged = callback;
   }
 
-  _commit(todos) {
+  _commit(todos: Todo[]) {
     this.onTodoListChanged(todos);
     localStorage.setItem("todos", JSON.stringify(todos));
   }
 
-  addTodo(text) {
+  addTodo(text: any) {
     this.todos.push(new Todo({ text }));
 
     this._commit(this.todos);
   }
 
-  editTodo(id, updatedText) {
+  editTodo(id: string, updatedText: any) {
     this.todos = this.todos.map(todo =>
       todo.id === id
         ? new Todo({
@@ -44,13 +44,13 @@ import TodoController from "../controllers/todo.controller";
     this._commit(this.todos);
   }
 
-  deleteTodo(_id) {
+  deleteTodo(_id: string) {
     this.todos = this.todos.filter(({ id }) => id !== _id);
 
     this._commit(this.todos);
   }
 
-  toggleTodo(_id) {
+  toggleTodo(_id: string) {
     this.todos = this.todos.map(todo =>
       todo.id === _id ? new Todo({ ...todo, complete: !todo.complete }) : todo
     );
