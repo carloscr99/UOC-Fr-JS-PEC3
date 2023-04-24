@@ -1,0 +1,1 @@
+He hecho uso de webpack, he modificado las rutas de los JS, por los que se han generado en el dist, por lo que al abrir el index.html, se ejecuta la aplicación sin problemas.
